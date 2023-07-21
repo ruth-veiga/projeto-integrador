@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Rua</th>
+            <th>Cidade</th>
+        </tr>
+        {%for mercado in mercados %}
+        <tr>
+            <td>{{mercado.nome}}</td>
+            <td>{{mercado.rua}}</td>
+            <td>{{mercado.cidade}}</td>
+            {%endfor%}
+        </tr>
+    </table>
+
+    <form action="{% url 'cadastrar_mercados' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="Nome..."><br>
+        <input type="text" name="rua" placeholder="Rua..."><br>
+        <input type="text" name="bairro" placeholder="Bairro..."><br>
+        <input type="text" name="numero" placeholder="Número..."><br>
+        <select name="cidade">
+            {% for cidade in cidades %}
+            <option value="{{cidade.id}}">{{cidade.nome}}</option>
+            {%endfor%}
+        </select>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+
+</body>
+
+</html>
