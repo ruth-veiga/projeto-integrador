@@ -7,9 +7,16 @@ class Cidade(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Sessão(models.Model):
+    nome = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.nome
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=60)
+    sessao = models.ForeignKey(Sessão, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome

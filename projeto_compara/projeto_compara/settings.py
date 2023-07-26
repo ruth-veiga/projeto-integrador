@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'projeto_compara.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'comparador',
+    'USER':'admin',
+    'PASSWORD':'admin',
+    'HOST':'192.168.186.207',
+    'PORT':'3306',
     }
 }
 
