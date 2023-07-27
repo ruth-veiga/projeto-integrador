@@ -33,7 +33,7 @@ class Mercado(models.Model):
 
 class Produto(models.Model):
     nome = models.CharField(max_length=60)
-    descricao = models.CharField(max_length=60)
+    descricao = models.CharField(max_length=60, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
