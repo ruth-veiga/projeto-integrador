@@ -12,13 +12,18 @@
             <th>Nome</th>
             <th>Descrição</th>
             <th>Categoria</th>
-            <th>imagem</th>
+            <th>Preços</th>
+            <th>Imagem</th>
         </tr>
         {%for produto in produtos %}
         <tr>
            <td>{{produto.nome}}</td>
            <td>{{produto.descricao}}</td>
            <td>{{produto.categoria}}</td>
+           <td><form action="{% url 'tela_precos' produto.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">Preços</button>
+           </form></td>
            <td><img src="{{produto.imagem}}"></td>
         {%endfor%}
         </tr>
