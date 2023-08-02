@@ -12,12 +12,14 @@
             <th>Nome</th>
             <th>Descrição</th>
             <th>Categoria</th>
+            <th>imagem</th>
         </tr>
         {%for produto in produtos %}
         <tr>
            <td>{{produto.nome}}</td>
            <td>{{produto.descricao}}</td>
            <td>{{produto.categoria}}</td>
+           <td><img src="{{produto.imagem}}"></td>
         {%endfor%}
         </tr>
     </table>

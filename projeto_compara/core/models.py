@@ -27,6 +27,7 @@ class Mercado(models.Model):
     numero = models.IntegerField()
     bairro = models.CharField(max_length=40)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
+    imagem = models.ImageField(upload_to ='imagens_mercados/')
 
     def __str__(self):
         return self.nome
@@ -35,6 +36,7 @@ class Produto(models.Model):
     nome = models.CharField(max_length=60)
     descricao = models.CharField(max_length=60, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    imagem = models.ImageField(upload_to ='imagens_produtos/')
 
     def __str__(self):
         return self.nome
