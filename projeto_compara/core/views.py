@@ -37,3 +37,28 @@ def cadastrar_mercados(request):
      
     Mercado.objects.create(nome=nome_mercado, rua=rua_mercado, cidade=cidade_mercado, bairro=bairro_mercado,numero=numero_mercado)
     return redirect(lista_mercados)
+
+def tela_precos(request, id):
+    produto = Produto.objects.get(id=id)
+    mercados = Mercado.objects.all()
+    mercados_produtos = produtos_mercados.objects.filter(produto = produto)
+    precificados = []
+    for linha in mercados_produtos:
+        precificados.append(linha.mercado)
+        linha.preco = float(linha.preco)
+
+    return render(request, 'precos.html', {'produto': produto, 'mercados': mercados, 'mercados_produtos': mercados_produtos, 'precificados': precificados})
+
+def adicionar_precos(request, id):
+    mercados = Mercado.objects.all()
+    produto = Produto.objects.get(id=id)
+    for mercado in mercados:
+        preco_mercado = request.POST.get(f'{mercado.id}')
+        try:
+            existencia = produtos_mercados.objects.get(mercado=mercado, produto=produto)
+            existencia.preco = preco_mercado
+            existencia.save()
+        except:
+            if float(preco_mercado) > 0:
+                produtos_mercados.objects.create(mercado=mercado, produto=produto, preco=preco_mercado)
+    return redirect(lista_produtos)

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{{produto.nome}}</h1>
+    <form action="{% url 'adicionar_precos' produto.id %}" method="post">
+        {%csrf_token%}
+        {% for linha in mercados_produtos %}
+            <div>
+                <label for="{{linha.mercado.id}}">{{linha.mercado.nome}}</label>
+                <input type="number" step="0.01" name="{{linha.mercado.id}}" id="{{linha.mercado.id}}"
+                    value="{{linha.preco}}">
+            </div>
+        {% endfor %}
+        {% for mercado in mercados %}
+            {% if mercado not in precificados %}
+                <div>
+                    <label for="{{mercado.id}}">{{mercado.nome}}</label>    
+                    <input type="number" step="0.01" name="{{mercado.id}}" id="{{mercado.id}}" value = 0>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <button class="btn btn-primary" type="submi">Salvar</button>
+    </form>
+</body>
+
+</html>
