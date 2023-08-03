@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 
 def lista_produtos(request):
-    produtos = Produto.objects.all()
+    produtos = Produto.objects.all().order_by('nome').values()
     categorias = Categoria.objects.all()
     return render(request, 'produtos.html', {'produtos': produtos, 'categorias':categorias})
 
