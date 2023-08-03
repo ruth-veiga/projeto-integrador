@@ -25,5 +25,7 @@ urlpatterns = [
     path('', lista_produtos),
     path('cadastrar_produtos/', cadastrar_produtos, name="cadastrar_produtos"),
     path('mercados/', lista_mercados),
-    path('cadastrar_mercados/', cadastrar_mercados, name="cadastrar_mercados")
+    path('cadastrar_mercados/', cadastrar_mercados, name="cadastrar_mercados"),
+    path('tela_precos/<int:id>', tela_precos, name="tela_precos"),
+    path('adicionar_precos/<int:id>', adicionar_precos, name="adicionar_precos")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
