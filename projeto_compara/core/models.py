@@ -39,6 +39,8 @@ class Produto(models.Model):
     imagem = models.ImageField(upload_to ='imagens_produtos/')
 
     def __str__(self):
+        if self.imagem == '':
+            return 'Sem imagem'
         return self.nome
 
 class produtos_mercados(models.Model):
